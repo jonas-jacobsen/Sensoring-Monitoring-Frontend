@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Sensor: {{sensorId}}</h3>
+    </div>
+    <div class="col-sm-6">
+        <div class="right mb-4">
+            <button type="button" class="btn btn-outline-primary" (click)="returnToSensorOverview()">Back</button>
+        </div>
+    </div>
+</div>
+<section class="mb-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover text-nowrap">
+                    <thead>
+                    <tr>
+                        <th scope="col">Creation Date</th>
+                        <th scope="col">People</th>
+                        <th scope="col">Airquality</th>
+                        <th scope="col">Temperature</th>
+                        <th scope="col">Humidity</th>
+                        <th scope="col">Light Intensity</th>
+                        <th scope="col">Battery</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let sensordata of sensordataList">
+                        <td>{{sensordata.creationDate.replace("Z"," ").replace("T", " ")}}</td>
+                        <td>{{sensordata.peopleInRoom}}</td>
+                        <td>{{sensordata.airquality}}</td>
+                        <td>{{sensordata.temperature | number : '1.0-0'}}</td>
+                        <td>{{sensordata.humidity}}</td>
+                        <td>{{sensordata.lightIntensity}}</td>
+                        <td>{{sensordata.batteryLevel}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

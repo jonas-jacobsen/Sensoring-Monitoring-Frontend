@@ -1,0 +1,62 @@
+<!-- <div class="container">
+    <br>
+    <br>
+    <br>
+    <form #loginForm="ngForm" id="contact-form" (ngSubmit)="loginUser()">
+        <small class="text-danger">{{msg}}</small>
+        <div class="md-form mb-0">
+            <input name="username" type="text" id="username" class="form-control" [(ngModel)]="user.username" required #username="ngModel" [class.is-invalid]="username.invalid && username.touched">
+            <label for="username">Deine Benutzername</label>
+            <div *ngIf="username.errors && (username.invalid && username.touched)">
+                <small class="text-danger" *ngIf="username.errors.required">Please enter username</small>
+            </div>
+        </div>
+        <div class="md-form mb-0">
+            <input name="password" type="password" id="password" class="form-control" [(ngModel)]="user.password" required #password="ngModel" [class.is-invalid]="password.invalid && password.touched">
+            <label for="password">Password</label>
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+        </div>
+        <br>
+        <button [disabled]="loginForm.form.invalid" type="submit" id="submit" class="btn btn-outline-unique waves-effect">Login
+        </button>
+    </form>
+    <br>
+    <br>
+    <br>
+</div>
+-->
+<div class="background_image">
+    <div class="login-page">
+        <div class="form">
+            <div>
+                <form #loginForm="ngForm" id="contact-form" (ngSubmit)="loginUser()" class="login-form">
+                    <small class="text-danger">{{msg}}</small>
+                    <input name="username" type="text" id="username" class="form-control" placeholder="Username"
+                           [(ngModel)]="user.username" required #username="ngModel"
+                           [class.is-invalid]="username.invalid && username.touched">
+                    <div *ngIf="username.errors && (username.invalid && username.touched)">
+                        <small class="text-danger" *ngIf="username.errors.required">Please enter username</small>
+                    </div>
+                    <input name="password" type="password" id="password" class="form-control" placeholder="Password"
+                           [(ngModel)]="user.password" required #password="ngModel"
+                           [class.is-invalid]="password.invalid && password.touched">
+                    <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is
+                        required</small>
+                    <button [disabled]="loginForm.form.invalid" type="submit" id="submit"
+                            class="btn btn-outline-unique waves-effect">Login
+                    </button>
+                    <p class="messag">Not registered? <a href="#">Create an account</a></p>
+                </form>
+            </div>
+            <ng-template #registerScreen>
+                <form class="register-form">
+                    <input type="text" placeholder="username"/>
+                    <input type="password" placeholder="password"/>
+                    <button>register</button>
+                    <p class="message">Already registered? <a href="#"> Sign In</a></p>
+                </form>
+            </ng-template>
+        </div>
+    </div>
+</div>
+

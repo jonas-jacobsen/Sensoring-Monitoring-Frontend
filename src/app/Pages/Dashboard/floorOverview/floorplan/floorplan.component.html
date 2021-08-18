@@ -1,0 +1,80 @@
+<section class="mb-4">
+    <div class="card">
+        <!-- Tabs navs -->
+        <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+            <li (click)="storeTabInSession(1)" class="nav-item" role="presentation">
+                <a class="nav-link {{activeEG}}" id="ex1-tab-1" data-mdb-toggle="tab" href="#ex1-tabs-1" role="tab"
+                   aria-controls="ex1-tabs-1" aria-selected="true">EG</a>
+            </li>
+            <li (click)="storeTabInSession(2)" class="nav-item" role="presentation">
+                <a class="nav-link {{activeOne}}" id="ex1-tab-2" data-mdb-toggle="tab" href="#ex1-tabs-2" role="tab"
+                   aria-controls="ex1-tabs-2" aria-selected="false">1.OG</a>
+            </li>
+            <li (click)="storeTabInSession(3)" class="nav-item" role="presentation">
+                <a class="nav-link {{activeTwo}}" id="ex1-tab-3" data-mdb-toggle="tab" href="#ex1-tabs-3" role="tab"
+                   aria-controls="ex1-tabs-3" aria-selected="false">2.OG</a>
+            </li>
+            <li (click)="storeTabInSession(4)" class="nav-item" role="presentation">
+                <a class="nav-link {{activeThree}}" id="ex1-tab-4" data-mdb-toggle="tab" href="#ex1-tabs-4" role="tab"
+                   aria-controls="ex1-tabs-4" aria-selected="false">3.OG</a>
+            </li>
+            <li (click)="storeTabInSession(5)" class="nav-item" role="presentation">
+                <a class="nav-link {{activeFour}}" id="ex1-tab-5" data-mdb-toggle="tab" href="#ex1-tabs-5" role="tab"
+                   aria-controls="ex1-tabs-5" aria-selected="false">4.OG</a>
+            </li>
+            <li (click)="storeTabInSession(6)" class="nav-item" role="presentation">
+                <a class="nav-link {{activeFive}}" id="ex1-tab-6" data-mdb-toggle="tab" href="#ex1-tabs-6" role="tab"
+                   aria-controls="ex1-tabs-6" aria-selected="false">5.OG</a>
+            </li>
+            <li (click)="storeTabInSession(7)" class="nav-item" role="presentation">
+                <a class="nav-link {{activeSix}}" id="ex1-tab-7" data-mdb-toggle="tab" href="#ex1-tabs-7" role="tab"
+                   aria-controls="ex1-tabs-7" aria-selected="false">6.OG</a>
+            </li>
+        </ul>
+        <!-- Tabs navs -->
+        <div class="card-body text-center">
+            <!-- Tabs content -->
+            <div class="tab-content" id="ex1-content">
+                <div class="tab-pane fade {{showEG}}" id="ex1-tabs-1" role="tabpanel" aria-labelledby="ex1-tab-1">
+                    <app-floorog></app-floorog>
+                </div>
+                <div class="tab-pane fade {{showOne}}" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                    <app-floorone></app-floorone>
+                </div>
+                <div class="tab-pane fade {{showTwo}}" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                    <app-floortwo></app-floortwo>
+                </div>
+                <div class="tab-pane fade {{showThree}}" id="ex1-tabs-4" role="tabpanel" aria-labelledby="ex1-tab-4">
+                    <app-floorthree></app-floorthree>
+                </div>
+                <div class="tab-pane fade {{showFour}}" id="ex1-tabs-5" role="tabpanel" aria-labelledby="ex1-tab-5">
+                    <app-floorfour></app-floorfour>
+                </div>
+                <div class="tab-pane fade {{showFive}}" id="ex1-tabs-6" role="tabpanel" aria-labelledby="ex1-tab-6">
+                    <app-floorfive></app-floorfive>
+                </div>
+                <div class="tab-pane fade {{showSix}}" id="ex1-tabs-7" role="tabpanel" aria-labelledby="ex1-tab-7">
+                    <app-floorsix></app-floorsix>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row">
+    <div class="col-xl-6 col-md-12 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <app-floorplan-chart-load-of-floor></app-floorplan-chart-load-of-floor>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-12 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <app-overview-chart-free-occupied></app-overview-chart-free-occupied>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabs content -->

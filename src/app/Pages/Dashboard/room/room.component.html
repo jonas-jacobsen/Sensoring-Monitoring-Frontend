@@ -1,0 +1,193 @@
+<div class="row">
+    <div class="col-sm-6">
+        <h3>{{room?.roomName}}</h3>
+    </div>
+    <div class="col-sm-6">
+        <div class="right mb-4">
+            <button type="button" class="btn btn-outline-primary" (click)="returnToFloorplan()">Back</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="!isDataAvailable">
+    <div class="alert alert-danger" @fade role="alert">
+        Can't receive any current data. Sensors of the rooms are currently offline.
+    </div>
+</div>
+
+<section class="mb-4">
+    <div class="card">
+        <div class="card-body text-center">
+            <img src="{{room?.imageUrl}}">
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between px-md-1">
+                        <div>
+                            <h3>{{currentData?.airquality}} / 255</h3>
+                            <p class="mb-0">Current Air Qualitiy</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-wind fa-fw text-info fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between px-md-1">
+                        <div>
+                            <h3>{{currentData?.batteryLevel}} %</h3>
+                            <p class="mb-0">Battery Level</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i [ngStyle]="{'color':batterycolor}" class="fas fa-battery-three-quarters fa-3x"></i>
+                        </div>
+                    </div>
+                    <div class="px-md-1">
+                        <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                            <div class="progress-bar" role="progressbar"
+                                 [ngStyle]="{'width':currentData?.batteryLevel+'%'}"
+                                 [attr.aria-valuenow]="currentData?.batteryLevel"
+                                 aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between px-md-1">
+                        <div>
+                            <h3>{{currentData?.humidity}}</h3>
+                            <p class="mb-0">Current Humidity</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-tint text-info fa-3x me-4"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between px-md-1">
+                        <div>
+                            <h3>{{currentData?.lightIntensity}} %</h3>
+                            <p class="mb-0">Current Light intensity</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="far fa-lightbulb text-warning fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between px-md-1">
+                        <div>
+                            <h3>{{currentData?.peopleInRoom}}</h3>
+                            <p class="mb-0">Current People in Room</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-user-friends text-info fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between px-md-1">
+                        <div>
+                            <h3>{{currentData?.temperature.toString().slice(0,4)}} °C</h3>
+                            <p class="mb-0">Current Temperature</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-temperature-low text-warning fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mb-4">
+    <div class="card">
+        <div class="card-header text-center py-3">
+            <h5 class="mb-0 text-center">
+                <strong>All Sensors in this Room</strong>
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover text-nowrap">
+                    <thead>
+                    <tr>
+                        <th scope="col">Sensor Id</th>
+                        <th scope="col">Sensor Type</th>
+                        <th class="no-sort" scope="col">Online/Offline</th>
+                        <th class="no-sort" scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let sensor of sensorlist">
+                        <td>{{sensor.sensorId}}</td>
+                        <td>{{sensor.sensorType}}</td>
+                        <td>
+                             <span *ngIf="isDataAvailable; else elseBlock">
+                                <i style="color: green" class="far fa-check-circle"></i>
+                            </span>
+                            <ng-template #elseBlock>
+                                <span>
+                                    <i style="color: red" class="far fa-times-circle"></i>
+                                </span>
+                            </ng-template>
+                        </td>
+                        <td class="right">
+                            <button type="button" class="btn btn-outline-primary" (click)="showSensor(sensor.sensorId)">
+                                Show
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="row">
+        <div class="col-xl-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <app-person-count-room-chart></app-person-count-room-chart>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

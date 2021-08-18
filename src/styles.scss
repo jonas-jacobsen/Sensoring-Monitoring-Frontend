@@ -1,0 +1,21 @@
+table tr {
+  vertical-align: middle
+}
+button {
+  margin: 1px;
+}
+.right {
+  text-align: right;
+}
+.list-group-item.active, .page-item.active .page-link{
+  background-color: #00136f;
+  border-color: #00136f;
+}
+.btn-outline-primary {
+  border-color: #00136f;
+  color: #00136f;
+}
+.tab-content a {
+  color: #00136f;
+}
+
